@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task Manager</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+</head>
+<body>
+  <div class="container">
+    <h1>Task Manager</h1>
+    <div class="actions">
+      <div class="tab">
+      <div id="searchBar" style="display: none;">
+        <div class="search-container">
+          <i class="fa fa-search search-icon"></i>
+          <input type="search"  id="searchInput">
+          
+        </div>
+       
+      </div>
+      
+       
+        <span class="searchText" id="searchButton">Search</span>
+      </div>
+      <button id="newTaskBtn">New Task</button>
+    </div>
+    <div class="tablist">
+      <div class="tabItem">
+        <div class="tab">
+          <div class="all">
+
+          </div>
+          <span>All</span>
+        </div>
+        <div class="tab">
+          <div class="notStarted">
+
+          </div>
+          <span>Not Started</span>
+        </div>
+        <div class="tab">
+          <div class="inProgress">
+
+          </div>
+          <span>In Progress</span>
+        </div>
+        <div class="tab">
+          <div class="onHold">
+
+          </div>
+          <span>On Hold</span>
+        </div>
+        <div class="tab">
+          <div class="review">
+
+          </div>
+          <span>To Review</span>
+        </div>
+        <div class="tab">
+          <div class="completed">
+
+          </div>
+          <span>Completed</span>
+        </div>
+      </div>
+    </div>
+    <div class="task-table">
+    <div class="taskHeadking">
+      <div class="tab tskNmae">
+        <i class="fa fa-file-text"></i>
+        <span>Task Name</span>
+      </div>
+      <div class="tab tskDesc">
+        <i class="fa fa-th-list"></i>
+        <span>Task Description</span>
+      </div>
+      <div class="tab tskStatus">
+        <i class="fa fa-bar-chart"></i>
+        <span>Status</span>
+      </div>
+      <div class="tab tskpriority">
+        <i class="fa fa-star"></i>
+        <span>Priority</span>
+      </div>
+      <div class="tab tskDeadline">
+        <i class="fa fa-calendar-check-o"></i>
+        <span>Deadline</span>
+      </div>
+    </div>
+    <div class="taskBody">
+
+    </div>
+    </div>
+  </div>
+  <script src="task.js"></script>
+</body>
+</html>
