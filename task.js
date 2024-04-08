@@ -137,7 +137,10 @@ tabItem.addEventListener('click', (event) => {
       taskBody.insertAdjacentHTML('beforeend', getTaskEl(item));
     });
   }
-
+  taskSec = document.querySelectorAll('.taskSec');
+  taskSec.forEach((item) => {
+    item.addEventListener('click', updateTask);
+  })
 })
 
 // Add click event listener to the button
@@ -203,10 +206,10 @@ addTaskBtn.addEventListener('click', (event) => {
     deadLine: taskDeadLine
   }
 
-  if(addTaskBtn.innerHTML.includes('Update')) {
+  if (addTaskBtn.innerHTML.includes('Update')) {
     task.forEach((item, index) => {
-      if(item.id == currentTask.id) {
-        task[index] = {...currentTask};
+      if (item.id == currentTask.id) {
+        task[index] = { ...currentTask };
       }
     })
   } else {
@@ -242,7 +245,7 @@ const updateTask = (event) => {
     taskPriority.value = item.priority.sName;
     taskDeadLine.value = item.deadLine;
   })
-  addTaskBtn.innerHTML = 'Update Task' 
+  addTaskBtn.innerHTML = 'Update Task'
 }
 
 
