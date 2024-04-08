@@ -7,7 +7,7 @@ body {
 }
 
 .container {
-  max-width: 800px;
+  max-width: 900px;
   margin: 20px auto;
   padding: 0 20px;
 }
@@ -107,7 +107,7 @@ h1 {
 
 .taskHeadking {
   display: flex;
-
+  border-bottom: 1px solid #ccc;
 }
 
 
@@ -145,6 +145,7 @@ h1 {
   height: 28px;
   font-size: 14px;
   line-height: 1.2;
+  padding: 5px;
   min-width: 0px;
   padding-left: 8px;
   padding-right: 8px;
@@ -257,6 +258,14 @@ span {
 .tskDeadline {
   width: 106px;
   border-right: 1px solid #ccc;
+}
+.tskDelete {
+  width: 16px;
+ 
+}
+.tskEdit {
+  width: 26px;
+  border-right: 1px solid #ccc; 
 }
 
 .ipTask {

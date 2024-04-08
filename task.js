@@ -59,6 +59,12 @@ const getTaskEl = item =>
           <div class="tab tskDeadline">
             <span>${item.deadLine}</span>
           </div>
+          <div class="tab tskEdit">
+          <span><i class="fa fa-edit"></i></span>
+        </div>
+        <div class="tab tskDelete">
+        <span><i class="fa fa-trash" aria-hidden="true"></i></span>
+      </div>
         </div>
             `
 
@@ -226,7 +232,7 @@ addTaskBtn.addEventListener('click', (event) => {
 })
 
 const updateTask = (event) => {
-  const taskName = document.querySelector('.task');
+  const taskupdateTaskName = document.querySelector('.task');
   const taskDesc = document.querySelector('.taskDescription');
   const taskStatus = document.querySelector('.taskStatus');
   const taskPriority = document.querySelector('.taskPriority');
