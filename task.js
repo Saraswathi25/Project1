@@ -59,6 +59,9 @@ const getTaskEl = item =>
           <div class="tab tskDeadline">
             <span>${item.deadLine}</span>
           </div>
+          <div class="tab tskAssignee">
+            <span>${item.assignee}</span>
+          </div>
           <div  id="${item.id}" class="tab tskEdit">
           <span><i class="fa fa-edit"></i></span>
         </div>
@@ -88,7 +91,8 @@ searchInput.addEventListener('input', (event) => {
       item.priority.name.toLowerCase().includes(event.target.value.toLowerCase()) ||
       item.description.toLowerCase().includes(event.target.value.toLowerCase()) ||
       item.status.name.toLowerCase().includes(event.target.value.toLowerCase()) ||
-      item.deadLine.toLowerCase().includes(event.target.value.toLowerCase())) {
+      item.deadLine.toLowerCase().includes(event.target.value.toLowerCase()) ||
+      item.assignee.toLowerCase().includes(event.target.value.toLowerCase())) {
       taskBody.innerHTML = ''
       return item
     }
@@ -200,6 +204,7 @@ addTaskBtn.addEventListener('click', (event) => {
   const taskStatus = document.querySelector('.taskStatus').value
   const taskPriority = document.querySelector('.taskPriority').value
   const taskDeadLine = document.querySelector('.taskDeadLine').value
+  const taskAssignee = document.querySelector('.taskAssignee').value
   const task = JSON.parse(localStorage.getItem('task'));
   const isUpdate = addTaskBtn.innerHTML.includes('Update');
 
@@ -214,7 +219,8 @@ addTaskBtn.addEventListener('click', (event) => {
     description: taskDesc,
     status: taskConfig[taskStatus],
     priority: taskConfig[taskPriority],
-    deadLine: taskDeadLine
+    deadLine: taskDeadLine,
+    assignee:taskAssignee
   }
 
   if (addTaskBtn.innerHTML.includes('Update')) {
@@ -228,6 +234,7 @@ addTaskBtn.addEventListener('click', (event) => {
   }
   taskBody.innerHTML = ''
   addTaskBtn.innerHTML = 'Add Task'
+  taskData= task;
   localStorage.setItem('task', JSON.stringify(task))
   task.forEach(item => {
     taskBody.insertAdjacentHTML('beforeend', getTaskEl(item));
@@ -250,6 +257,7 @@ const updateTask = (event) => {
   const taskStatus = document.querySelector('.taskStatus');
   const taskPriority = document.querySelector('.taskPriority');
   const taskDeadLine = document.querySelector('.taskDeadLine');
+  const taskAssignee = document.querySelector('.taskAssignee');
   currentTaskId = event.target.id;
   backDrop.style.display = 'block';
   const task = JSON.parse(localStorage.getItem('task'));
@@ -260,6 +268,7 @@ const updateTask = (event) => {
     taskStatus.value = item.status.sName;
     taskPriority.value = item.priority.sName;
     taskDeadLine.value = item.deadLine;
+    taskAssignee.value=item.assignee;
   })
   addTaskBtn.innerHTML = 'Update Task'
 }
@@ -273,6 +282,7 @@ const deleteTask = (event) => {
     }
   })
   taskBody.innerHTML = ''
+  taskData= task;
   localStorage.setItem('task', JSON.stringify(task))
   task.forEach(item => {
     taskBody.insertAdjacentHTML('beforeend', getTaskEl(item));
@@ -285,6 +295,7 @@ const deleteTask = (event) => {
   tskDelete.forEach((item) => {
     item.addEventListener('click', deleteTask);
   })
+  
 }
 
 const clearForm = () => {
@@ -293,10 +304,12 @@ const clearForm = () => {
   const taskStatus = document.querySelector('.taskStatus');
   const taskPriority = document.querySelector('.taskPriority');
   const taskDeadLine = document.querySelector('.taskDeadLine');
+  const taskAssignee = document.querySelector('.taskAssignee');
 
   taskName.value = ''
   taskDesc.value = ''
   taskDeadLine.value = ''
+  taskAssignee.value=''
 
 }
 
