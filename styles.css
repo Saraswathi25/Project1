@@ -327,10 +327,11 @@ span {
   cursor: pointer;
 }
 .taskSec:hover {
-  background-color: #ccc;
+  background-color: #cccccc82;
 
 }
 
-.taskSec .tab {
+.taskSec .tab span,
+.taskSec .tab i{
   pointer-events: none;
 }

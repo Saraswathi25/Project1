@@ -59,10 +59,10 @@ const getTaskEl = item =>
           <div class="tab tskDeadline">
             <span>${item.deadLine}</span>
           </div>
-          <div class="tab tskEdit">
+          <div  id="${item.id}" class="tab tskEdit">
           <span><i class="fa fa-edit"></i></span>
         </div>
-        <div class="tab tskDelete">
+        <div  id="${item.id}" class="tab tskDelete">
         <span><i class="fa fa-trash" aria-hidden="true"></i></span>
       </div>
         </div>
@@ -173,15 +173,20 @@ const getTask = () => {
 
 document.addEventListener("DOMContentLoaded", () => {
   getTask()
-  taskSec = document.querySelectorAll('.taskSec');
+  taskSec = document.querySelectorAll('.tskEdit');
+  tskDelete = document.querySelectorAll('.tskDelete');
   taskSec.forEach((item) => {
     item.addEventListener('click', updateTask);
+  })
+  tskDelete.forEach((item) => {
+    item.addEventListener('click', deleteTask);
   })
 });
 
 
 closeBtn.addEventListener('click', (event) => {
   backDrop.style.display = 'none'
+  clearForm()
 })
 
 newTaskBtn.addEventListener('click', () => {
@@ -227,15 +232,20 @@ addTaskBtn.addEventListener('click', (event) => {
   task.forEach(item => {
     taskBody.insertAdjacentHTML('beforeend', getTaskEl(item));
   });
-  taskSec = document.querySelectorAll('.taskSec');
+  taskSec = document.querySelectorAll('.tskEdit');
+  tskDelete = document.querySelectorAll('.tskDelete');
   taskSec.forEach((item) => {
     item.addEventListener('click', updateTask);
   })
+  tskDelete.forEach((item) => {
+    item.addEventListener('click', deleteTask);
+  })
+  clearForm()
   closeBtn.click()
 })
 
 const updateTask = (event) => {
-  const taskupdateTaskName = document.querySelector('.task');
+  const taskName = document.querySelector('.task');
   const taskDesc = document.querySelector('.taskDescription');
   const taskStatus = document.querySelector('.taskStatus');
   const taskPriority = document.querySelector('.taskPriority');
@@ -252,6 +262,42 @@ const updateTask = (event) => {
     taskDeadLine.value = item.deadLine;
   })
   addTaskBtn.innerHTML = 'Update Task'
+}
+
+const deleteTask = (event) => {
+  currentTaskId = event.target.id;
+  const task = JSON.parse(localStorage.getItem('task'));
+  task.forEach((item, i) => {
+    if(item.id == currentTaskId) {
+      task.splice(i, 1);
+    }
+  })
+  taskBody.innerHTML = ''
+  localStorage.setItem('task', JSON.stringify(task))
+  task.forEach(item => {
+    taskBody.insertAdjacentHTML('beforeend', getTaskEl(item));
+  });
+  taskSec = document.querySelectorAll('.tskEdit');
+  tskDelete = document.querySelectorAll('.tskDelete');
+  taskSec.forEach((item) => {
+    item.addEventListener('click', updateTask);
+  })
+  tskDelete.forEach((item) => {
+    item.addEventListener('click', deleteTask);
+  })
+}
+
+const clearForm = () => {
+  const taskName = document.querySelector('.task');
+  const taskDesc = document.querySelector('.taskDescription');
+  const taskStatus = document.querySelector('.taskStatus');
+  const taskPriority = document.querySelector('.taskPriority');
+  const taskDeadLine = document.querySelector('.taskDeadLine');
+
+  taskName.value = ''
+  taskDesc.value = ''
+  taskDeadLine.value = ''
+
 }
 
 
